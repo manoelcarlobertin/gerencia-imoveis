@@ -10,14 +10,9 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
-</html>
-
-<!--body>
+<body>
     <div class="page">
-      <%#= render "layouts/admin/header" %>
+      <%= render "layouts/admin/header" %>
       <%#= render "layouts/admin/navbar" %>
       <div class="page-wrapper">
         <div class="page-body">
@@ -27,6 +22,6 @@
       <%#= render "layouts/admin/footer" %>
     </div>
 
-    <%#= render "layouts/flash" %>
+    <%= render "layouts/flash" %>
   </!--body>
 </html>
