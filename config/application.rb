@@ -20,6 +20,12 @@ Bundler.require(*Rails.groups)
 
 module GerenciaImoveis
   class Application < Rails::Application
+    # Define o idioma padrão (exemplo: português brasileiro)
+    config.i18n.default_locale = :'pt-BR'
+
+    # Carrega todas as traduções no diretório config/locales
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
 
