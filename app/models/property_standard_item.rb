@@ -1,0 +1,2 @@
+class PropertyStandardItem < ApplicationRecord
+end
