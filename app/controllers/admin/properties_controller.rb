@@ -16,8 +16,9 @@ module Admin
     before_action :load_property, only: [ :edit, :update, :destroy ]
 
     def index
-      @form = PropertySearchForm.new filter_params
-      @properties = @form.submit
+      # @form = PropertySearchForm.new filter_params
+      # @properties = @form.submit
+      @properties = Property.order(:title)
     end
 
     def new
