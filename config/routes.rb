@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   resource :dashboard, only: [ :show ]
 
   namespace :admin do
-    resources :property_types, except: [ :show ]
+    resources :properties
+    resources :property_standard_items, except: [ :show ]
+    resources :property_situations, except: [ :show ]
+    resources :property_types, except: [ :show] 
   end
 
   get "up" => "rails/health#show", as: :rails_health_check

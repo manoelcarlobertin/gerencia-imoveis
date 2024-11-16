@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "properties_list" do %>
+  <% unless params[:hide_filter] %>
+    <%= render "collection_filter" %>
+  <% end %>
+
+  <div class="d-flex flex-column gap-4">
+    <%= render Admin::PropertyCardComponent.with_collection(@properties) %>
+  </div>
+<% end %>
