@@ -30,12 +30,12 @@
                 <% end %>
               </li>
               <li class="nav-item">
-                <%#= link_to admin_properties_path, class: "nav-link" do %>
+                <%= link_to admin_properties_path, class: "nav-link" do %>
                   <span class="nav-link-icon d-md-none d-lg-inline-block">
                     <i class="nav-link-icon fs-2 d-md-none d-lg-inline-block ti ti-building-estate"></i>
                   </span>
                   <span class="nav-link-title"> Imóveis </span>
-                <%# end %>
+                <% end %>
               </li>
 
               <li class="nav-item dropdown">
@@ -46,9 +46,9 @@
                   </span>
                 </a>
                 <div class="dropdown-menu">
-                  <%#= link_to "Características", admin_property_standard_items_path, class: "dropdown-item" %>
-                  <%#= link_to "Situação do Imóvel", admin_property_situations_path, class: "dropdown-item" %>
-                  <%#= link_to "Tipos de Imóvel", admin_property_types_path, class: "dropdown-item" %>
+                  <%= link_to "Características", admin_property_standard_items_path, class: "dropdown-item" %>
+                  <%= link_to "Situação do Imóvel", admin_property_situations_path, class: "dropdown-item" %>
+                  <%= link_to "Tipos de Imóvel", admin_property_types_path, class: "dropdown-item" %>
                 </div>
               </li>
             </ul>

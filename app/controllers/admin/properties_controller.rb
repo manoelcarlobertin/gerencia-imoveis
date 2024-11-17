@@ -13,7 +13,7 @@ module Admin
       property_standard_item_ids: [], photos: []
     ].freeze
 
-    before_action :load_property, only: [:edit, :update, :destroy]
+    before_action :load_property, only: [ :edit, :update, :destroy ]
 
     def index
       @properties = Property.all
@@ -26,10 +26,10 @@ module Admin
     end
 
     def create
-      @property = Property.new property_params
+      @property = Property.new(property_params)
 
       if @property.save
-        redirect_to admin_properties_path, notice: 'Imóvel criado com sucesso.'
+        redirect_to admin_properties_path, notice: "Imóvel criado com sucesso."
       else
         render :new, status: :unprocessable_entity
       end
@@ -39,8 +39,8 @@ module Admin
     end
 
     def update
-      if @property.update property_params
-        redirect_to admin_properties_path, notice: 'Imóvel atualizado com sucesso.'
+      if @property.update(property_params)
+        redirect_to admin_properties_path, notice: "Imóvel atualizado com sucesso."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -48,7 +48,7 @@ module Admin
 
     def destroy
       @property.destroy
-      redirect_to admin_properties_path, notice: 'Imóvel removido com sucesso.'
+      redirect_to admin_properties_path, notice: "Imóvel removido com sucesso."
     end
 
     private

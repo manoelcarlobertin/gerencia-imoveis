@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_16_210426) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_17_003624) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,38 +53,43 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_16_210426) do
   end
 
   create_table "properties", force: :cascade do |t|
+    t.string "title", limit: 200
+    t.integer "size"
+    t.integer "bedroom_count"
+    t.integer "bathroom_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "contract_type"
+    t.string "contract_type", limit: 20, default: "rent"
     t.bigint "property_type_id", null: false
     t.bigint "property_situation_id", null: false
-    t.string "address_zip_code"
     t.string "address_state", limit: 2
     t.string "address_city"
     t.string "address_neighborhood"
     t.string "address_line_1"
     t.string "address_number", limit: 10
     t.string "address_line_2"
-    t.string "title"
-    t.float "size"
     t.integer "price_cents", default: 0, null: false
     t.string "price_currency", default: "USD", null: false
     t.integer "condominium_fee_cents"
     t.string "condominium_fee_currency"
     t.integer "tax_cents"
     t.string "tax_currency"
-    t.integer "bedroom_count"
-    t.integer "bathroom_count"
+    t.string "address_zip_code", limit: 9
     t.index ["property_situation_id"], name: "index_properties_on_property_situation_id"
     t.index ["property_type_id"], name: "index_properties_on_property_type_id"
   end
 
   create_table "property_linked_items", force: :cascade do |t|
+    t.bigint "property_id", null: false
+    t.bigint "property_standard_item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_property_linked_items_on_property_id"
+    t.index ["property_standard_item_id"], name: "index_property_linked_items_on_property_standard_item_id"
   end
 
   create_table "property_situations", force: :cascade do |t|
+    t.string "name", limit: 50, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -96,7 +101,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_16_210426) do
   end
 
   create_table "property_types", force: :cascade do |t|
-    t.string "name", limit: 50
+    t.string "name", limit: 50, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -117,4 +122,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_16_210426) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "properties", "property_situations"
   add_foreign_key "properties", "property_types"
+  add_foreign_key "property_linked_items", "properties"
+  add_foreign_key "property_linked_items", "property_standard_items"
 end
